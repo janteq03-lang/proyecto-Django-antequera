@@ -1,0 +1,29 @@
+{% extends 'viajes/base.html' %}
+
+{% block contenido %}
+<h2 class="mb-3">Buscar Viaje</h2>
+
+<form method="get" class="row g-3">
+    <div class="col-md-8">
+        <input type="text" name="destino" class="form-control"
+               placeholder="Ingrese destino">
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary w-100">
+            Buscar
+        </button>
+    </div>
+</form>
+
+<hr>
+
+{% for viaje in viajes %}
+    <div class="alert alert-secondary">
+        <strong>{{ viaje.viajero }}</strong> viaja a
+        <strong>{{ viaje.destino }}</strong> el {{ viaje.fecha }}
+    </div>
+{% empty %}
+    <p class="text-muted">No se encontraron viajes.</p>
+{% endfor %}
+
+{% endblock %}
