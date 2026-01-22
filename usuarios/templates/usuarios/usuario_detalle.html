@@ -1,0 +1,25 @@
+{% extends "viajes/base.html" %}
+
+{% block contenido %}
+<div class="py-3">
+    <h3>Detalles del Perfil</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-4 font-weight-bold"><strong>Nombre:</strong></div>
+        <div class="col-md-8">{{ usuario.nombre }}</div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-4"><strong>Correo Electrónico:</strong></div>
+        <div class="col-md-8">{{ usuario.email }}</div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-4"><strong>Código de Identificación:</strong></div>
+        <div class="col-md-8"><code>{{ usuario.code }}</code></div>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'usuarios:usuario_editar' usuario.code %}" class="btn btn-warning">Editar Datos</a>
+        <a href="{% url 'usuarios:listar_usuarios' %}" class="btn btn-outline-secondary">Volver al listado</a>
+    </div>
+</div>
+{% endblock %}

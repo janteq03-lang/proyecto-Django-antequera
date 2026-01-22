@@ -1,8 +1,22 @@
-{% extends 'viajes/base.html' %}
+{% extends "viajes/base.html" %}
 
 {% block contenido %}
-<h2 class="mb-3">Bienvenido a la Agencia de Viajes 🌍</h2>
-<p class="lead">
-    Desde aquí podés registrar destinos, viajeros y organizar viajes.
-</p>
+<div class="text-center py-4">
+
+    <h2 class="mb-3 fw-bold">
+        Bienvenido a la Agencia de Viajes 🌍
+    </h2>
+
+    <p class="lead text-muted">
+        Desde aquí podés registrar destinos, viajeros y organizar viajes.
+    </p>
+
+    
+    <button class="btn btn-primary btn-lg mt-3"
+            data-bs-toggle="modal"
+            data-bs-target="#acercaDeMiModal">
+        🙋‍♂️ Acerca de mí
+    </button>
+
+</div>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends "viajes/base.html" %}
+
+{% block contenido %}
+<div class="text-center py-4">
+    <h2 class="text-danger">¿Eliminar Usuario?</h2>
+    
+    
+    <p class="lead">Estás a punto de eliminar a <strong>{{ object.nombre }} {{ object.apellido }}</strong>.</p>
+    
+    <div class="alert alert-warning d-inline-block">
+        Esta acción es irreversible y se perderán todos los datos asociados al usuario con documento {{ object.nro_documento }}.
+    </div>
+
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-lg">Sí, Eliminar permanentemente</button>
+       <a href="{% url 'usuarios:listar_usuarios' %}" class="btn btn-light btn-lg border">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

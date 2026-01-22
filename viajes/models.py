@@ -1,26 +1,20 @@
 from django.db import models
+from usuarios.models import Usuario
+
 
 class Destino(models.Model):
-    nombre = models.CharField(max_length=50)
-    pais = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=100)
+    pais = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.nombre} - {self.pais}"
 
 
-class Viajero(models.Model):
-    nombre = models.CharField(max_length=50)
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.nombre
-
-
 class Viaje(models.Model):
     destino = models.ForeignKey(Destino, on_delete=models.CASCADE)
-    viajero = models.ForeignKey(Viajero, on_delete=models.CASCADE)
-    fecha = models.DateField(auto_now_add=True)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    fecha = models.DateTimeField()
     descripcion = models.TextField()
 
     def __str__(self):
-        return f"{self.viajero} a {self.destino}"
+        return f"{self.usuario} a {self.destino}"

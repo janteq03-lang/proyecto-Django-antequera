@@ -6,7 +6,8 @@
 <form method="get" class="row g-3">
     <div class="col-md-8">
         <input type="text" name="destino" class="form-control"
-               placeholder="Ingrese destino">
+               placeholder="Ingrese destino"
+               value="{{ request.GET.destino }}">
     </div>
     <div class="col-md-4">
         <button type="submit" class="btn btn-primary w-100">
@@ -18,9 +19,29 @@
 <hr>
 
 {% for viaje in viajes %}
-    <div class="alert alert-secondary">
-        <strong>{{ viaje.viajero }}</strong> viaja a
-        <strong>{{ viaje.destino }}</strong> el {{ viaje.fecha }}
+    <div class="card mb-3">
+        <div class="card-body">
+
+            <p class="card-text">
+                <strong>{{ viaje.usuario }}</strong> viaja a
+                <strong>{{ viaje.destino }}</strong><br>
+                <small class="text-muted">
+                    Fecha: {{ viaje.fecha|date:"d/m/Y H:i" }}
+                </small>
+            </p>
+
+            <div class="text-end">
+                <a href="{% url 'detalle_viaje' viaje.pk %}"
+                   class="btn btn-sm btn-outline-primary">
+                    Ver detalle
+                </a>
+
+                <a href="{% url 'editar_viaje' viaje.pk %}"class="btn btn-outline-primary btn-sm"> Editar
+                </a>
+                <a href="{% url 'eliminar_viaje' viaje.pk %}" class="btn btn-danger">Eliminar</a>
+            </div>
+
+        </div>
     </div>
 {% empty %}
     <p class="text-muted">No se encontraron viajes.</p>

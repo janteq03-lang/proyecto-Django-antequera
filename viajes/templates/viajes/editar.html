@@ -1,0 +1,19 @@
+{% extends "viajes/base.html" %}
+
+{% block contenido %}
+<h2>Editar Viaje</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">
+        Guardar cambios
+    </button>
+
+  <a href="{% url 'viajes:buscar_viaje' %}" class="btn btn-secondary">
+    Cancelar
+</a>
+
+</form>
+{% endblock %}

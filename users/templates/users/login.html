@@ -1,0 +1,15 @@
+{% extends "viajes/base.html" %}
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h2 class="text-center">Iniciar Sesión</h2>
+            <form method="post" class="card p-4 shadow">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

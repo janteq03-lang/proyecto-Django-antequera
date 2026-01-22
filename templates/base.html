@@ -1,0 +1,37 @@
+<ul class="navbar-nav ms-auto align-items-center">
+    <li class="nav-item"><a class="nav-link text-white" href="{% url 'inicio' %}">Inicio</a></li>
+
+    {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'usuarios:listar_usuarios' %}">Usuarios</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'crear_destino' %}">Destinos</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'crear_viaje' %}">Viajes</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'buscar_viaje' %}">Buscar</a></li>
+        
+        <li class="nav-item dropdown ms-lg-3">
+            <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" data-bs-toggle="dropdown">
+                {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}" class="rounded-circle me-2" style="width: 25px; height: 25px; object-fit: cover;">
+                {% endif %}
+                {{ user.username }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+                <li><a class="dropdown-item" href="{% url 'perfil_detail' %}">Mi Perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form action="{% url 'logout' %}" method="post" class="px-3">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm w-100">Salir</button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+
+    {% else %}
+        <li class="nav-item">
+            <a class="btn btn-outline-light btn-sm mx-1" href="{% url 'login' %}">Ingresar</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-warning btn-sm text-dark fw-bold mx-1" href="{% url 'registro' %}">Registrarse</a>
+        </li>
+    {% endif %}
+</ul>

@@ -1,0 +1,21 @@
+{% extends 'viajes/base.html' %}
+{% block contenido %}
+<html>
+<head>
+    <title>Detalle del Viaje</title>
+</head>
+<body>
+    <h1>Detalle del Viaje</h1>
+
+    <p><strong>Viajero:</strong> {{ viaje.usuario }}</p>
+    <p><strong>Documento:</strong> {{ viaje.usuario.nro_documento }}</p>
+    <p><strong>Destino:</strong> {{ viaje.destino }}</p>
+    <p><strong>Fecha:</strong> {{ viaje.fecha }}</p>
+    <p><strong>Descripción:</strong></p>
+    <p>{{ viaje.descripcion }}</p>
+
+    <a href="{% url 'buscar_viaje' %}">Volver</a>
+</body>
+</html>
+   
+{% endblock %}

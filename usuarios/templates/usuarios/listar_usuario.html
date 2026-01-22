@@ -1,0 +1,38 @@
+{% extends "viajes/base.html" %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Lista de Usuarios</h2>
+    
+    <a href="{% url 'usuarios:usuario_form' %}" class="btn btn-success">+ Nuevo Usuario</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+            <tr>
+                <td>{{ u.nombre }} {{ u.apellido }}</td>
+                <td>{{ u.email }}</td>
+                <td>
+                    <a href="{% url 'usuarios:usuario_detalle' u.code %}" class="btn btn-sm btn-info text-white">Ver</a>
+                    <a href="{% url 'usuarios:usuario_editar' u.code %}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{% url 'usuarios:usuario_eliminar' u.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">No hay usuarios.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

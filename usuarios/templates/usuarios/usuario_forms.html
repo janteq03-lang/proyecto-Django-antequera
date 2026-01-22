@@ -1,0 +1,50 @@
+{% extends "viajes/base.html" %}
+
+{% block contenido %}
+<div class="container mt-2">
+    <h2 class="mb-4">
+        {% if object %}
+            <i class="bi bi-pencil-square"></i> Editar Usuario: {{ object.nombre }}
+        {% else %}
+            <i class="bi bi-person-plus"></i> Crear Nuevo Usuario
+        {% endif %}
+    </h2>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form method="post" novalidate class="needs-validation">
+                {% csrf_token %}
+                
+                <div class="card bg-light border-0">
+                    <div class="card-body">
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label fw-bold">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                                {% if field.errors %}
+                                    <div class="text-danger small">{{ field.errors }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary px-4">
+                        {% if object %}Actualizar{% else %}Guardar Usuario{% endif %}
+                    </button>
+                    <a href="{% url 'usuarios:listar_usuarios' %}" class="btn btn-outline-secondary px-4">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

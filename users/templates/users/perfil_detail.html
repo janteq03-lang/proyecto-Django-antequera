@@ -1,0 +1,38 @@
+{% extends "viajes/base.html" %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body text-center p-5">
+                    {% if perfil.avatar %}
+                        <img src="{{ perfil.avatar.url }}" class="rounded-circle img-thumbnail mb-3 shadow-sm" style="width: 150px; height: 150px; object-fit: cover;">
+                    {% else %}
+                        <img src="/static/img/default-user.png" class="rounded-circle img-thumbnail mb-3 shadow-sm" style="width: 150px; height: 150px;">
+                    {% endif %}
+
+                    <h2 class="card-title fw-bold">{{ perfil.first_name }} {{ perfil.last_name }}</h2>
+                    <p class="text-muted">@{{ perfil.username }}</p>
+                    <hr class="my-4">
+                    
+                    <div class="text-start mb-4">
+                        <p class="mb-2"><strong>📧 Email:</strong> {{ perfil.email }}</p>
+                        <p class="mb-2"><strong>🌎 País:</strong> {{ perfil.pais }}</p>
+                        <p class="mb-2"><strong>📍 Dirección:</strong> {{ perfil.direccion }}</p>
+                        <p class="mb-2"><strong>🎂 Nacimiento:</strong> {{ perfil.fecha_nacimiento|date:"d/m/Y" }}</p>
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="{% url 'perfil_edit' %}" class="btn btn-primary px-4">Editar Perfil</a>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger">Cerrar Sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
